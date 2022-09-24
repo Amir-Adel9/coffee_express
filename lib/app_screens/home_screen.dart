@@ -22,16 +22,6 @@ class HomeScreen extends StatelessWidget {
           Image.asset(Coffee.items[5].imagePath)
         ],
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   backgroundColor: mainColor,
-      //   items: [
-      //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.shopping_cart), label: 'Cart'),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.favorite), label: 'Favorites')
-      //   ],
-      // ),
     );
   }
 }
