@@ -79,12 +79,12 @@ flutter:
   # fonts:
   #   - family: Schyler
   fonts:
-   - family: Rosarivo
-     fonts:
-       - asset: fonts/Rosarivo/Rosarivo-Regular.ttf
-   - family: OpenSans
-     fonts:
-       - asset: fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf
+    - family: Rosarivo
+      fonts:
+        - asset: fonts/Rosarivo/Rosarivo-Regular.ttf
+    - family: OpenSans
+      fonts:
+        - asset: fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf
 
   #
   # For details regarding fonts from package dependencies,
