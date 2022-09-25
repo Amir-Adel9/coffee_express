@@ -101,6 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+
       bottomNavigationBar: BottomNavigationBar(backgroundColor: mainColor,
       items: [BottomNavigationBarItem( icon: Icon(Icons.home,color: secondaryColor,), label: ''),
         BottomNavigationBarItem( icon: Icon(Icons.shopping_cart, color: secondaryColor,), label: ''),
