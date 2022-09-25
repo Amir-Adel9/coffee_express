@@ -74,7 +74,7 @@ Widget menuItem({required Coffee item}) {
                 Padding(
                   padding: const EdgeInsets.only(left: 15),
                   child: Text(
-                    '\$ ${item.itemPrice}',
+                    '\$${item.itemPrice}',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,

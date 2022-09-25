@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:coffee_express/app_screens/product_screen.dart';
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/global_fonts.dart';
 import 'package:flutter/material.dart';
@@ -134,9 +135,8 @@ Widget home() {
                               mainAxisSpacing: 20),
                       itemCount: Coffee.items.length,
                       scrollDirection: Axis.vertical,
-                      itemBuilder: (context, index) => SizedBox(
-                          width: 135,
-                          height: 230,
+                      itemBuilder: (context, index) => GestureDetector(
+                         onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProductScreen(product: Coffee.items[index],) )),
                           child: menuItem(item: Coffee.items[index]))),
                 )),
           )
