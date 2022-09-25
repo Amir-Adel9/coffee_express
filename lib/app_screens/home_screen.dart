@@ -3,6 +3,7 @@
 import 'package:coffee_express/coffee_data_model.dart';
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/global_fonts.dart';
+import 'package:coffee_express/reusable_widgets/cart_item.dart';
 import 'package:coffee_express/reusable_widgets/menu_item.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     String coffeeType ='';
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: mainColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Spacer(),
               Padding(
                 padding: const EdgeInsets.only(right:45),
-                child: Container(
+                 child:
+                Container(
                   width: 280,
                   height: 440,
                   child:
