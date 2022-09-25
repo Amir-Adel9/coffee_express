@@ -81,10 +81,10 @@ flutter:
   fonts:
     - family: Rosarivo
       fonts:
-        - asset: fonts/Rosarivo/Rosarivo-Regular.ttf
+        - asset: assets/fonts/Rosarivo/Rosarivo-Regular.ttf
     - family: OpenSans
       fonts:
-        - asset: fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf
+        - asset: assets/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf
 
   #
   # For details regarding fonts from package dependencies,
