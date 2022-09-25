@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/global_fonts.dart';
 import 'package:flutter/material.dart';
@@ -41,10 +43,12 @@ Widget home() {
           ),
         ),
       ),
+      Spacer(),
       Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Container(
-            height: 440,
+            height: 418,
             width: 38,
             decoration: const BoxDecoration(
                 color: Color(0xFF382329),
@@ -53,6 +57,7 @@ Widget home() {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Spacer(),
                 RotatedBox(
                   quarterTurns: 3,
                   child: TextButton(
@@ -71,7 +76,9 @@ Widget home() {
                     child: Text(
                       'Latte',
                       style: TextStyle(
-                          fontFamily: mainFont, color: const Color(0xFF705f5b)),
+                          fontFamily: mainFont,
+                          color: const Color(0xFF705f5b),
+                          fontSize: 14),
                     ),
                   ),
                 ),
