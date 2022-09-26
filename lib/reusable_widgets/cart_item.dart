@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/global_fonts.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,7 @@ Widget cartItem() {
     width: 343,
     height: 96,
     decoration:
-    BoxDecoration(color: boxColor, borderRadius: BorderRadius.circular(15)),
+        BoxDecoration(color: boxColor, borderRadius: BorderRadius.circular(15)),
     child: Padding(
       padding: const EdgeInsets.all(12),
       child: Row(
