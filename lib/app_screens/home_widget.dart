@@ -58,68 +58,18 @@ Widget home() {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Spacer(),
-                RotatedBox(
-                  quarterTurns: 3,
-                  child: TextButton(
-                    onPressed: null,
-                    child: Text(
-                      'Cappuccino',
-                      style: TextStyle(
-                          color: secondaryColor, fontFamily: mainFont),
-                    ),
-                  ),
+                SizedBox(
+                  height: 418,
+                  width: 38,
+                  child: ListView.builder(
+                      itemCount: Coffee.coffeTypes.length,
+                      itemBuilder: (context, index) =>
+                          coffeType(coffeeType: Coffee.coffeTypes[index])),
                 ),
-                RotatedBox(
-                  quarterTurns: 3,
-                  child: TextButton(
-                    onPressed: null,
-                    child: Text(
-                      'Latte',
-                      style: TextStyle(
-                          fontFamily: mainFont,
-                          color: const Color(0xFF705f5b),
-                          fontSize: 14),
-                    ),
-                  ),
-                ),
-                RotatedBox(
-                  quarterTurns: 3,
-                  child: TextButton(
-                    onPressed: null,
-                    child: Text(
-                      'Americano',
-                      style: TextStyle(
-                          fontFamily: mainFont, color: const Color(0xFF705f5b)),
-                    ),
-                  ),
-                ),
-                RotatedBox(
-                  quarterTurns: 3,
-                  child: TextButton(
-                    onPressed: null,
-                    child: Text(
-                      'Espresso',
-                      style: TextStyle(
-                          fontFamily: mainFont, color: const Color(0xFF705f5b)),
-                    ),
-                  ),
-                ),
-                RotatedBox(
-                  quarterTurns: 3,
-                  child: TextButton(
-                    onPressed: null,
-                    child: Text(
-                      'Flat White',
-                      style: TextStyle(
-                          fontFamily: mainFont, color: const Color(0xFF705f5b)),
-                    ),
-                  ),
-                )
               ],
             ),
           ),
-          const Spacer(),
+          Spacer(),
           Padding(
             padding: const EdgeInsets.only(right: 45),
             child: SizedBox(
@@ -136,12 +86,34 @@ Widget home() {
                       itemCount: Coffee.items.length,
                       scrollDirection: Axis.vertical,
                       itemBuilder: (context, index) => GestureDetector(
-                         onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProductScreen(product: Coffee.items[index],) )),
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProductScreen(
+                                        product: Coffee.items[index],
+                                      ))),
                           child: menuItem(item: Coffee.items[index]))),
                 )),
           )
         ],
       ),
     ],
+  );
+}
+
+Widget coffeType({required String coffeeType}) {
+  return RotatedBox(
+    quarterTurns: 3,
+    child: TextButton(
+      onPressed: null,
+      child: Text(
+        coffeeType,
+        style: TextStyle(
+            color: secondaryColor.withOpacity(0.4),
+            fontFamily: mainFont,
+            fontStyle: FontStyle.italic,
+            fontSize: 12),
+      ),
+    ),
   );
 }

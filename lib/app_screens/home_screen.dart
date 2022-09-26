@@ -27,24 +27,23 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.home,
-                  color: secondaryColor,
                 ),
                 label: ''),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.shopping_cart,
-                  color: secondaryColor,
                 ),
                 label: ''),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.favorite,
-                  color: secondaryColor,
                 ),
                 label: ''),
           ],
           showSelectedLabels: false,
           showUnselectedLabels: false,
+          selectedItemColor: secondaryColor,
+          unselectedItemColor: secondaryColor.withOpacity(0.4),
           currentIndex: currentIndex,
           onTap: (index) => setState(() {
                 currentIndex = index;
