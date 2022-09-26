@@ -59,4 +59,11 @@ class Coffee {
   ];
 
   static List<String> milkTypes = ['Oat Milk', 'Soy Milk', 'Almond Milk'];
+  static List<String> coffeTypes = [
+    'Cappuccino',
+    'Latte',
+    'Americano',
+    'Espresso',
+    'Flat White'
+  ];
 }
