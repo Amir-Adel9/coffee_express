@@ -4,6 +4,8 @@ import 'package:coffee_express/app_screens/cart_widget.dart';
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/app_screens/home_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../cart_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
+  final cartController=Get.put(CartController());
   @override
   Widget build(BuildContext context) {
     List<Widget> body = [home(), cart(), Center(child: Icon(Icons.favorite))];

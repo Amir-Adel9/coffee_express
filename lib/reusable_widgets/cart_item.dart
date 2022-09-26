@@ -1,10 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:coffee_express/cart_controller.dart';
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/global_fonts.dart';
 import 'package:flutter/material.dart';
 
-Widget cartItem() {
+import '../coffee_data_model.dart';
+
+Widget cartItem({
+  required CartController controller,
+  required Coffee item,
+  required int quantity,
+  required int index
+}) {
   return Container(
     width: 343,
     height: 96,
@@ -18,7 +26,7 @@ Widget cartItem() {
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: Image.asset(
-              'assets/images/products/hazelnut.jpg',
+              item.imagePath,
               width: 72,
               height: 72,
               fit: BoxFit.fill,
@@ -35,12 +43,12 @@ Widget cartItem() {
                         fontSize: 14,
                         fontFamily: mainFont,
                         color: Colors.white)),
-                Text('Blueberry',
+                Text(item.itemName,
                     style: TextStyle(
                         fontSize: 12,
                         fontFamily: mainFont,
                         color: Colors.white)),
-                Text('\$30',
+                Text('\$${item.itemPrice}',
                     style: TextStyle(
                         fontSize: 16,
                         fontFamily: secondaryFont,
@@ -64,13 +72,15 @@ Widget cartItem() {
                         borderRadius: BorderRadius.circular(8)),
                     child: IconButton(
                         padding: EdgeInsets.zero,
-                        onPressed: null,
+                        onPressed: (){
+                          controller.removeProduct(item);
+                        },
                         icon: Icon(
                           Icons.remove,
                           color: mainColor,
                         ))),
                 Text(
-                  '2',
+                  '$quantity',
                   style: TextStyle(
                       fontSize: 20, fontFamily: mainFont, color: Colors.white),
                 ),
@@ -81,7 +91,9 @@ Widget cartItem() {
                         borderRadius: BorderRadius.circular(8)),
                     child: IconButton(
                         padding: EdgeInsets.zero,
-                        onPressed: null,
+                        onPressed: (){
+                          controller.addProduct(item);
+                        },
                         icon: Icon(
                           Icons.add,
                           color: mainColor,

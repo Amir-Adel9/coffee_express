@@ -1,9 +1,14 @@
+import 'package:coffee_express/cart_controller.dart';
 import 'package:coffee_express/coffee_data_model.dart';
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/global_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+final cartController=Get.put(CartController());
 
 Widget menuItem({required Coffee item}) {
+
   return Container(
     decoration: BoxDecoration(
       color: boxColor,
@@ -88,7 +93,9 @@ Widget menuItem({required Coffee item}) {
                         color: secondaryColor,
                         borderRadius: BorderRadiusDirectional.circular(10)),
                     child: IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.add)))
+                        onPressed: () {
+              cartController.addProduct(item);
+                        }, icon: const Icon(Icons.add)))
               ],
             ),
           )
