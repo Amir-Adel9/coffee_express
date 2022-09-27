@@ -20,13 +20,19 @@ class _HomeScreenState extends State<HomeScreen> {
   final cartController = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
-    List<Widget> body = [home(), cart(), Center(child: CartTest())];
+    List<Widget> body = [
+      HomeWidget(),
+      CartScreen(),
+      Center(child: CartTest()),
+      Center(child: Icon(Icons.adb_rounded))
+    ];
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: mainColor,
       body: body[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
           backgroundColor: mainColor,
+          type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
                 icon: Icon(
@@ -41,6 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.favorite,
+                ),
+                label: ''),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.notifications,
                 ),
                 label: ''),
           ],

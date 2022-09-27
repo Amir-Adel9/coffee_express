@@ -1,14 +1,27 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:coffee_express/app_screens/cart_widget.dart';
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/global_fonts.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import '../cart_controller.dart';
 import '../coffee_data_model.dart';
 
-class ProductScreen extends StatelessWidget {
+class ProductScreen extends StatefulWidget {
   Coffee product;
-  ProductScreen({required this.product});
+  String coffeeType;
+
+  ProductScreen({required this.product, required this.coffeeType});
+
+  @override
+  State<ProductScreen> createState() => _ProductScreenState();
+}
+
+class _ProductScreenState extends State<ProductScreen> {
+  final cartController = Get.put(CartController());
+
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +41,7 @@ class ProductScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       Image.asset(
-                        product.imagePath,
+                        widget.product.imagePath,
                         width: 365,
                         height: 335,
                         fit: BoxFit.fill,
@@ -44,6 +57,8 @@ class ProductScreen extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                           child: IconButton(
+                            highlightColor: Colors.transparent,
+                            splashColor: Colors.transparent,
                             onPressed: () => Navigator.pop(context),
                             icon: Icon(
                               Icons.arrow_back,
@@ -59,7 +74,7 @@ class ProductScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
-                'Cappuccino',
+                widget.coffeeType,
                 style: TextStyle(
                     color: Colors.white, fontFamily: mainFont, fontSize: 24),
               ),
@@ -70,7 +85,7 @@ class ProductScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    product.itemName,
+                    widget.product.itemName,
                     style: TextStyle(
                         fontSize: 16,
                         color: Colors.white,
@@ -88,7 +103,7 @@ class ProductScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          ' ${product.itemRating}',
+                          ' ${widget.product.itemRating}',
                           style: TextStyle(
                               fontSize: 12,
                               fontFamily: mainFont,
@@ -101,28 +116,57 @@ class ProductScreen extends StatelessWidget {
               ),
             ),
             Text(
-              product.itemDescription,
+              widget.product.itemDescription,
               style: TextStyle(
                   fontFamily: secondaryFont, fontSize: 14, color: Colors.white),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 30, bottom: 8),
+              padding: const EdgeInsets.only(top: 25, bottom: 8),
               child: Text(
                 'Choice of Milk',
                 style: TextStyle(
                     fontSize: 14, fontFamily: mainFont, color: Colors.white),
               ),
             ),
-            Container(
-              color: Colors.red,
-              height: 30,
+            SizedBox(
+              height: 35,
               width: 500,
               child: ListView.builder(
                   itemCount: Coffee.milkTypes.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => Padding(
                         padding: const EdgeInsets.only(right: 10),
-                        child: milkChoice(milkType: Coffee.milkTypes[index]),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                _selectedIndex = index;
+                              });
+                            },
+                            style: ButtonStyle(
+                                backgroundColor: _selectedIndex == index
+                                    ? MaterialStateProperty.all(secondaryColor)
+                                    : MaterialStateProperty.all(mainColor),
+                                minimumSize:
+                                    MaterialStateProperty.all(Size(99, 50)),
+                                shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        side: BorderSide(
+                                            color: secondaryColor)))),
+                            child: Text(
+                              Coffee.milkTypes[index],
+                              style: TextStyle(
+                                  fontFamily: mainFont,
+                                  color: _selectedIndex == index
+                                      ? mainColor
+                                      : secondaryColor,
+                                  fontSize: 14),
+                            ),
+                          ),
+                        ),
                       )),
             ),
             Padding(
@@ -140,7 +184,7 @@ class ProductScreen extends StatelessWidget {
                             color: Colors.white),
                       ),
                       Text(
-                        '\$${product.itemPrice}',
+                        '\$${widget.product.itemPrice}',
                         style: TextStyle(
                             fontSize: 24,
                             fontFamily: secondaryFont,
@@ -149,23 +193,28 @@ class ProductScreen extends StatelessWidget {
                     ],
                   ),
                   ElevatedButton(
-                      onPressed: null,
+                      onPressed: () {
+                        cartController.addProduct(widget.product);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CartScreen()));
+                      },
                       style: ButtonStyle(
                           shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
+                              MaterialStateProperty.all(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           )),
-                          minimumSize:
-                              MaterialStateProperty.all<Size>(Size(250, 45)),
+                          minimumSize: MaterialStateProperty.all(Size(280, 45)),
                           backgroundColor:
-                              MaterialStateProperty.all<Color>(secondaryColor)),
+                              MaterialStateProperty.all(secondaryColor)),
                       child: Text(
                         'BUY NOW',
                         style: TextStyle(
                             color: mainColor,
                             fontSize: 16,
-                            fontFamily: secondaryFont),
+                            fontFamily: secondaryFont,
+                            fontWeight: FontWeight.bold),
                       ))
                 ],
               ),
@@ -173,21 +222,6 @@ class ProductScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget milkChoice({required String milkType}) {
-    return Container(
-      width: 99,
-      decoration: BoxDecoration(
-        color: secondaryColor,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Center(
-          child: Text(
-        milkType,
-        style: TextStyle(fontFamily: mainFont, color: mainColor, fontSize: 14),
-      )),
     );
   }
 }
