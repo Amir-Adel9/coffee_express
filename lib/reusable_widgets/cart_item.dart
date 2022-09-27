@@ -7,12 +7,11 @@ import 'package:flutter/material.dart';
 
 import '../coffee_data_model.dart';
 
-Widget cartItem({
-  required CartController controller,
-  required Coffee item,
-  required int quantity,
-  required int index
-}) {
+Widget cartItem(
+    {required CartController controller,
+    required Coffee item,
+    required int quantity,
+    required int index}) {
   return Container(
     width: 343,
     height: 96,
@@ -72,7 +71,7 @@ Widget cartItem({
                         borderRadius: BorderRadius.circular(8)),
                     child: IconButton(
                         padding: EdgeInsets.zero,
-                        onPressed: (){
+                        onPressed: () {
                           controller.removeProduct(item);
                         },
                         icon: Icon(
@@ -91,7 +90,7 @@ Widget cartItem({
                         borderRadius: BorderRadius.circular(8)),
                     child: IconButton(
                         padding: EdgeInsets.zero,
-                        onPressed: (){
+                        onPressed: () {
                           controller.addProduct(item);
                         },
                         icon: Icon(

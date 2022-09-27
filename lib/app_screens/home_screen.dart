@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:coffee_express/app_screens/cart_widget.dart';
+import 'package:coffee_express/cart_test.dart';
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/app_screens/home_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +17,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
-  final cartController=Get.put(CartController());
+  final cartController = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
-    List<Widget> body = [home(), cart(), Center(child: Icon(Icons.favorite))];
+    List<Widget> body = [home(), cart(), Center(child: CartTest())];
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: mainColor,

@@ -9,33 +9,31 @@ import 'package:get/get_core/src/get_main.dart';
 import '../coffee_data_model.dart';
 import '../reusable_widgets/menu_item.dart';
 
-final CartController controller=Get.find();
+final CartController controller = Get.find();
 bool isEmpty = false;
 
 Widget cart() {
-  if(controller.products.keys.toList().length==0){
-   return Center(
-     child: Column(
-       children: [
-         Text(
-           'Cart',
-           style: TextStyle(
-               fontSize: 24, fontFamily: mainFont, color: Colors.white),
-         ),
-         Text(
-           'No items currently in cart',
-           style: TextStyle(
-               fontSize: 24, fontFamily: mainFont, color: Colors.white),
-         ),
-       ],
-     ),
-   );
-  }
-  else{
-
+  if (controller.products.keys.toList().length == 0) {
+    return Center(
+      child: Column(
+        children: [
+          Text(
+            'Cart',
+            style: TextStyle(
+                fontSize: 24, fontFamily: mainFont, color: Colors.white),
+          ),
+          Text(
+            'No items currently in cart',
+            style: TextStyle(
+                fontSize: 24, fontFamily: mainFont, color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  } else {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.only(top: 46,left: 18,right: 18),
+        padding: const EdgeInsets.only(top: 46, left: 18, right: 18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -44,16 +42,24 @@ Widget cart() {
               style: TextStyle(
                   fontSize: 24, fontFamily: mainFont, color: Colors.white),
             ),
-            Obx( () => SizedBox(
-              height: 350,
-              child: ListView.builder(itemBuilder: (context,index)=> Padding(
-                padding: const EdgeInsets.only(bottom: 15),
-                child:isEmpty ? empty(): cartItem(controller: controller,
-                    item: controller.products.keys.toList()[index],
-                    quantity: controller.products.values.toList()[index],
-                    index: index),
-              ),itemCount: controller.products.length,),
-            ),
+            Obx(
+              () => SizedBox(
+                height: 350,
+                child: ListView.builder(
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: isEmpty
+                        ? empty()
+                        : cartItem(
+                            controller: controller,
+                            item: controller.products.keys.toList()[index],
+                            quantity:
+                                controller.products.values.toList()[index],
+                            index: index),
+                  ),
+                  itemCount: controller.products.length,
+                ),
+              ),
             ),
             Spacer(),
             Padding(
@@ -66,19 +72,39 @@ Widget cart() {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Delivery Charges',style: TextStyle(fontSize: 14,fontFamily: mainFont,color: Colors.white),),
-                Text('\$20',style: TextStyle(fontFamily: secondaryFont,fontSize: 14,color: Colors.white),)
+                Text(
+                  'Delivery Charges',
+                  style: TextStyle(
+                      fontSize: 14, fontFamily: mainFont, color: Colors.white),
+                ),
+                Text(
+                  '\$20',
+                  style: TextStyle(
+                      fontFamily: secondaryFont,
+                      fontSize: 14,
+                      color: Colors.white),
+                )
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Taxes',style: TextStyle(fontSize: 14,fontFamily: mainFont,color: Colors.white),),
-                Text('\$30.17',style: TextStyle(fontFamily: secondaryFont,fontSize: 14,color: Colors.white),),
+                Text(
+                  'Taxes',
+                  style: TextStyle(
+                      fontSize: 14, fontFamily: mainFont, color: Colors.white),
+                ),
+                Text(
+                  '\$30.17',
+                  style: TextStyle(
+                      fontFamily: secondaryFont,
+                      fontSize: 14,
+                      color: Colors.white),
+                ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 12,top: 12),
+              padding: const EdgeInsets.only(bottom: 12, top: 12),
               child: DottedLine(
                 dashColor: Colors.white.withOpacity(0.9),
                 dashLength: 10,
@@ -87,24 +113,33 @@ Widget cart() {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Grand Total',style: TextStyle(fontSize: 16,fontFamily: mainFont,color: Colors.white),),
-                Obx(()=>Text('\$${controller.total}',style: TextStyle(fontFamily: secondaryFont,fontSize: 20,color: Colors.white),)),
+                Text(
+                  'Grand Total',
+                  style: TextStyle(
+                      fontSize: 16, fontFamily: mainFont, color: Colors.white),
+                ),
+                Obx(() => Text(
+                      '\$${controller.total}',
+                      style: TextStyle(
+                          fontFamily: secondaryFont,
+                          fontSize: 20,
+                          color: Colors.white),
+                    )),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20,bottom: 10),
+              padding: const EdgeInsets.only(top: 20, bottom: 10),
               child: ElevatedButton(
                   onPressed: null,
                   style: ButtonStyle(
-                      shape:
-                      MaterialStateProperty.all<RoundedRectangleBorder>(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          )),
+                        borderRadius: BorderRadius.circular(10.0),
+                      )),
                       minimumSize:
-                      MaterialStateProperty.all<Size>(Size(340, 45)),
+                          MaterialStateProperty.all<Size>(Size(340, 45)),
                       backgroundColor:
-                      MaterialStateProperty.all<Color>(secondaryColor)),
+                          MaterialStateProperty.all<Color>(secondaryColor)),
                   child: Text(
                     'PAY NOW',
                     style: TextStyle(
@@ -118,9 +153,9 @@ Widget cart() {
       ),
     );
   }
-
 }
-Widget empty(){
+
+Widget empty() {
   return Center(
     child: Column(
       children: [
