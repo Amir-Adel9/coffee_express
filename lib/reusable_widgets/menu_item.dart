@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:coffee_express/cart_controller.dart';
 import 'package:coffee_express/coffee_data_model.dart';
 import 'package:coffee_express/global_colors.dart';
@@ -118,7 +120,6 @@ class _TestItemState extends State<TestItem> {
                           splashColor: Colors.transparent,
                           onPressed: () {
                             cartController.addProduct(widget.item);
-                            print(widget.item.coffeeType);
                             setState(() {
                               _width = 37;
                               _buttonColor = secondaryColor.withOpacity(0.6);
@@ -135,7 +136,3 @@ class _TestItemState extends State<TestItem> {
     ;
   }
 }
-
-// Widget menuItem({required Coffee item}) {
-//   return 
-// }

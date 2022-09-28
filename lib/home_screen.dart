@@ -6,7 +6,7 @@ import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/app_screens/home_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../cart_controller.dart';
+import 'cart_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

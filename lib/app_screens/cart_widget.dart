@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:coffee_express/app_screens/home_screen.dart';
+import 'package:coffee_express/home_screen.dart';
 import 'package:coffee_express/app_screens/home_widget.dart';
 import 'package:coffee_express/cart_controller.dart';
 import 'package:coffee_express/global_colors.dart';
