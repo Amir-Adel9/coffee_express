@@ -84,7 +84,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 Coffee.items[index].coffeeType =
                                     Coffee.coffeeTypes[_selectedIndex];
                               });
-                              print(Coffee.items[index].coffeeType);
                             },
                             child: Text(
                               Coffee.coffeeTypes[index],
@@ -135,6 +134,5 @@ class _HomeWidgetState extends State<HomeWidget> {
         ),
       ],
     );
-    ;
   }
 }

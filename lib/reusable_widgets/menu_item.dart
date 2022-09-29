@@ -18,6 +18,7 @@ class TestItem extends StatefulWidget {
 class _TestItemState extends State<TestItem> {
   final cartController = Get.put(CartController());
   double _width = 40;
+  double _containerWidth = 135;
   var _buttonColor = secondaryColor;
   @override
   Widget build(BuildContext context) {
@@ -26,8 +27,8 @@ class _TestItemState extends State<TestItem> {
         color: boxColor,
         borderRadius: BorderRadiusDirectional.circular(12.6),
       ),
-      width: 135,
-      height: 230,
+      width: _containerWidth,
+      height: _containerWidth,
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
@@ -113,6 +114,7 @@ class _TestItemState extends State<TestItem> {
                         setState(() {
                           _width = 40;
                           _buttonColor = secondaryColor;
+                          _containerWidth = 135;
                         });
                       },
                       child: IconButton(
@@ -123,6 +125,7 @@ class _TestItemState extends State<TestItem> {
                             setState(() {
                               _width = 37;
                               _buttonColor = secondaryColor.withOpacity(0.6);
+                              _containerWidth = 130;
                             });
                           },
                           icon: const Icon(Icons.add)))

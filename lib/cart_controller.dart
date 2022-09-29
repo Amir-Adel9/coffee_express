@@ -14,7 +14,7 @@ class CartController extends GetxController {
 
   void removeProduct(Coffee product) {
     if (_products.containsKey(product) && _products[product] == 1) {
-      _products.removeWhere((key, value) => key == product);
+      _products[product] = 1;
     } else {
       _products[product] -= 1;
     }

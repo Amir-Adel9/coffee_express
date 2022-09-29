@@ -27,22 +27,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     if (controller.products.keys.toList().length == 0) {
-      return (Center(
-        child: Column(
-          children: [
-            Text(
-              'Cart',
-              style: TextStyle(
-                  fontSize: 24, fontFamily: mainFont, color: Colors.white),
-            ),
-            Text(
-              'No items currently in cart',
-              style: TextStyle(
-                  fontSize: 24, fontFamily: mainFont, color: Colors.white),
-            ),
-          ],
-        ),
-      ));
+      return emptyCart();
     } else {
       return Scaffold(
         backgroundColor: mainColor,
@@ -78,23 +63,44 @@ class _CartScreenState extends State<CartScreen> {
                 ],
               ),
               Obx(
-                () => Container(
+                () => SizedBox(
                   height: 350,
                   child: ListView.builder(
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.only(bottom: 15),
                       child: controller.products.length == 0
-                          ? empty()
-                          : CartItem(
-                              controller: controller,
-                              item: controller.products.keys.toList()[index],
-                              quantity:
-                                  controller.products.values.toList()[index],
+                          ? emptyCart()
+                          : Center(
+                              child: Dismissible(
+                                key: UniqueKey(),
+                                background: Container(
+                                  alignment: Alignment.centerRight,
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(15)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Icon(
+                                      Icons.delete,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                onDismissed: (direction) => setState(() {
+                                  controller.products.remove(
+                                      controller.products.keys.toList()[index]);
+                                }),
+                                child: CartItem(
+                                  controller: controller,
+                                  item:
+                                      controller.products.keys.toList()[index],
+                                  quantity: controller.products.values
+                                      .toList()[index],
+                                ),
+                              ),
                             ),
                     ),
-                    itemCount: controller.products.length == 0
-                        ? 1
-                        : controller.products.length,
+                    itemCount: controller.products.length,
                   ),
                 ),
               ),
@@ -211,21 +217,46 @@ class _CartScreenState extends State<CartScreen> {
     }
   }
 
-  Widget empty() {
-    return Center(
-      child: Column(
-        children: [
-          Text(
-            'Cart',
-            style: TextStyle(
-                fontSize: 24, fontFamily: mainFont, color: Colors.white),
-          ),
-          Text(
-            'No items currently in cart',
-            style: TextStyle(
-                fontSize: 24, fontFamily: mainFont, color: Colors.white),
-          ),
-        ],
+  Widget emptyCart() {
+    return Scaffold(
+      backgroundColor: mainColor,
+      body: Center(
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(40),
+              child: Text(
+                'Cart',
+                style: TextStyle(
+                    fontSize: 24, fontFamily: mainFont, color: Colors.white),
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/images/icon.png',
+                    width: 250,
+                    height: 200,
+                  ),
+                  Text(
+                    'No items currently in cart',
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontFamily: mainFont,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
