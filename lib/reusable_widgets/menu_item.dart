@@ -51,7 +51,7 @@ class _TestItemState extends State<TestItem> {
                     width: 43,
                     height: 20,
                     decoration: BoxDecoration(
-                        color: const Color(0xFF414141).withOpacity(0.8),
+                        color: const Color(0xFF414141).withOpacity(0.7),
                         borderRadius: const BorderRadius.only(
                           bottomRight: Radius.circular(15),
                         )),
@@ -66,8 +66,9 @@ class _TestItemState extends State<TestItem> {
                         Text(
                           '${widget.item.itemRating}',
                           style: const TextStyle(
-                            fontFamily: 'Rosarivo',
+                            fontFamily: 'OpenSans',
                             color: Colors.white,
+                            fontWeight: FontWeight.bold,
                             fontSize: 10,
                           ),
                         )

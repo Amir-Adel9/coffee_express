@@ -10,7 +10,6 @@ import '../coffee_data_model.dart';
 class CartItem extends StatefulWidget {
   CartController controller;
   Coffee item;
-
   int quantity;
 
   CartItem(
@@ -21,8 +20,6 @@ class CartItem extends StatefulWidget {
 }
 
 class _CartItemState extends State<CartItem> {
-  bool test = true;
-
   double _removeButtonWidth = 30;
   double _addButtonWidth = 30;
 

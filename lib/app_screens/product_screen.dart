@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../cart_controller.dart';
 import '../coffee_data_model.dart';
+import '../favorites_controller.dart';
 
 class ProductScreen extends StatefulWidget {
   Coffee product;
@@ -20,6 +21,7 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   final cartController = Get.put(CartController());
+  final favController = Get.put(FavoriteController());
 
   int _selectedIndex = 0;
 
@@ -108,10 +110,19 @@ class _ProductScreenState extends State<ProductScreen> {
                               fontSize: 12,
                               fontFamily: mainFont,
                               color: Colors.white),
-                        )
+                        ),
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: 20,
+                    child: FloatingActionButton(
+                      backgroundColor: mainColor,
+                      onPressed: () =>
+                          favController.toggleFavorite(widget.product),
+                      child: Icon(Icons.favorite),
+                    ),
+                  )
                 ],
               ),
             ),

@@ -2,11 +2,13 @@
 
 import 'package:coffee_express/home_screen.dart';
 import 'package:coffee_express/app_screens/home_widget.dart';
+import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:coffee_express/cart_controller.dart';
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/global_fonts.dart';
 import 'package:coffee_express/reusable_widgets/cart_item.dart';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -73,6 +75,7 @@ class _CartScreenState extends State<CartScreen> {
                           : Center(
                               child: Dismissible(
                                 key: UniqueKey(),
+                                direction: DismissDirection.endToStart,
                                 background: Container(
                                   alignment: Alignment.centerRight,
                                   decoration: BoxDecoration(
@@ -81,7 +84,7 @@ class _CartScreenState extends State<CartScreen> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(right: 10),
                                     child: Icon(
-                                      Icons.delete,
+                                      CupertinoIcons.trash,
                                       color: Colors.white,
                                     ),
                                   ),
@@ -179,7 +182,7 @@ class _CartScreenState extends State<CartScreen> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 10),
+                padding: const EdgeInsets.only(top: 15, bottom: 10),
                 child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(
@@ -222,7 +225,6 @@ class _CartScreenState extends State<CartScreen> {
       backgroundColor: mainColor,
       body: Center(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(40),

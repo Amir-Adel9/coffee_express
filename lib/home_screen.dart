@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:coffee_express/app_screens/cart_widget.dart';
+import 'package:coffee_express/app_screens/favorites_screen.dart';
 import 'package:coffee_express/cart_test.dart';
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/app_screens/home_widget.dart';
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     List<Widget> body = [
       HomeWidget(),
       CartScreen(),
-      Center(child: CartTest()),
+      FavoritesScreen(),
       Center(child: Icon(Icons.adb_rounded))
     ];
     return Scaffold(
@@ -59,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
           showUnselectedLabels: false,
           selectedItemColor: secondaryColor,
           unselectedItemColor: secondaryColor.withOpacity(0.4),
+          selectedIconTheme: IconThemeData(size: 30),
           currentIndex: currentIndex,
           onTap: (index) => setState(() {
                 currentIndex = index;
