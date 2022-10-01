@@ -8,13 +8,10 @@ import 'package:flutter/material.dart';
 import '../favorites_controller.dart';
 
 class FavoriteItem extends StatefulWidget {
-CartController controller;
-Coffee item;
+  CartController controller;
+  Coffee item;
 
-FavoriteItem({
-  required this.controller,
-  required this.item
-});
+  FavoriteItem({required this.controller, required this.item});
 
   @override
   State<FavoriteItem> createState() => _FavoriteItemState();
@@ -24,55 +21,61 @@ class _FavoriteItemState extends State<FavoriteItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 100,
-        width: 365,
+        width: 370,
+        height: 96,
         decoration: BoxDecoration(
             color: boxColor, borderRadius: BorderRadius.circular(20)),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 10, left: 10, right: 10, bottom: 10),
-              child: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            children: [
+              Container(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(12)),
                 child: Image.asset(
                   widget.item.imagePath,
                   fit: BoxFit.fill,
-                  width: 90,
-                  height: 70,
+                  width: 72,
+                  height: 72,
                 ),
               ),
-            ),
-            Text(widget.item.itemName,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: mainFont,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold)),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Text('\$${widget.item.itemPrice}',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: secondaryFont,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold)),
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: ElevatedButton(
-                  onPressed: (){
+              Padding(
+                padding: const EdgeInsets.only(left: 12),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(widget.item.itemName,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: mainFont,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold)),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text('\$${widget.item.itemPrice}',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: secondaryFont,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ],
+                ),
+              ),
+              Spacer(),
+              ElevatedButton(
+                  onPressed: () {
                     controller.addProduct(widget.item);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) =>CartScreen()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => CartScreen()));
                   },
                   style: ButtonStyle(
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       )),
-                      minimumSize: MaterialStateProperty.all(Size(20, 20)),
+                      minimumSize: MaterialStateProperty.all(Size(70, 40)),
                       backgroundColor:
                           MaterialStateProperty.all(secondaryColor)),
                   child: Text(
@@ -82,9 +85,9 @@ class _FavoriteItemState extends State<FavoriteItem> {
                         fontSize: 10,
                         fontFamily: secondaryFont,
                         fontWeight: FontWeight.bold),
-                  )),
-            )
-          ],
+                  ))
+            ],
+          ),
         ));
   }
 }

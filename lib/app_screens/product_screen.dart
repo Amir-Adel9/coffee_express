@@ -3,11 +3,14 @@
 import 'package:coffee_express/app_screens/cart_widget.dart';
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/global_fonts.dart';
+import 'package:coffee_express/global_helpers.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../cart_controller.dart';
 import '../coffee_data_model.dart';
 import '../favorites_controller.dart';
+import '../home_screen.dart';
 
 class ProductScreen extends StatefulWidget {
   Coffee item;
@@ -24,9 +27,16 @@ class _ProductScreenState extends State<ProductScreen> {
   final favController = Get.put(FavoriteController());
 
   int _selectedIndex = 0;
+  double rating = 0;
 
   @override
   Widget build(BuildContext context) {
+    if (favController.favourites.containsKey(widget.item)) {
+      isFavorite = true;
+    } else {
+      isFavorite = false;
+    }
+
     return Scaffold(
       backgroundColor: mainColor,
       body: Padding(
@@ -61,7 +71,10 @@ class _ProductScreenState extends State<ProductScreen> {
                           child: IconButton(
                             highlightColor: Colors.transparent,
                             splashColor: Colors.transparent,
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen())),
                             icon: Icon(
                               Icons.arrow_back,
                               color: Colors.white,
@@ -93,36 +106,37 @@ class _ProductScreenState extends State<ProductScreen> {
                         color: Colors.white,
                         fontFamily: mainFont),
                   ),
-                  SizedBox(
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 3),
-                          child: Icon(
-                            Icons.star_outlined,
-                            color: Color(0xFFD3A601),
-                            size: 15,
-                          ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 3),
+                        child: Icon(
+                          Icons.star_outlined,
+                          color: Color(0xFFD3A601),
+                          size: 15,
                         ),
-                        Text(
-                          ' ${widget.item.itemRating}',
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: mainFont,
-                              color: Colors.white),
-                        ),
-                      ],
-                    ),
+                      ),
+                      Text(
+                        ' ${widget.item.itemRating}',
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontFamily: mainFont,
+                            color: Colors.white),
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    height: 20,
-                    child: FloatingActionButton(
-                      backgroundColor: mainColor,
-                      onPressed: () =>
-                          favController.toggleFavorite(widget.item),
-                      child: Icon(Icons.favorite),
-                    ),
-                  )
+                  RatingBar.builder(
+                      itemSize: 20,
+                      initialRating: widget.item.itemRating,
+                      allowHalfRating: true,
+                      glowColor: secondaryColor,
+                      glowRadius: 5,
+                      itemBuilder: (context, index) =>
+                          Icon(Icons.star_outlined, color: Color(0xFFD3A601)),
+                      onRatingUpdate: (rating) => setState(() {
+                            this.rating = rating;
+                            widget.item.itemRating = rating;
+                          })),
                 ],
               ),
             ),
@@ -202,6 +216,26 @@ class _ProductScreenState extends State<ProductScreen> {
                             color: Colors.white),
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                    child: FloatingActionButton(
+                      splashColor: Colors.transparent,
+                      backgroundColor: mainColor,
+                      onPressed: () {
+                        favController.toggleFavorite(widget.item);
+                        setState(() {
+                          isFavorite = !isFavorite;
+                        });
+                      },
+                      child: Icon(
+                        isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border_outlined,
+                        color: isFavorite ? Colors.red : Colors.white,
+                        size: 35,
+                      ),
+                    ),
                   ),
                   ElevatedButton(
                       onPressed: () {

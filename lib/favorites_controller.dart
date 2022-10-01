@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'coffee_data_model.dart';
 
@@ -7,11 +8,14 @@ class FavoriteController extends GetxController {
   void toggleFavorite(Coffee product) {
     if (_favorites.containsKey(product)) {
       _favorites.removeWhere((key, value) => key == product);
-      Get.snackbar('You have removed', '${product.itemName} to your favs');
+      Get.snackbar('${product.itemName}', ' was removed to your favorites',
+          icon: Icon(Icons.heart_broken));
     } else {
       _favorites[product] = 1;
-      Get.snackbar('You have added', '${product.itemName} to your favs');
+      Get.snackbar('${product.itemName}', ' was added to your favorites',
+          icon: Icon(Icons.favorite));
     }
   }
+
   get favourites => _favorites;
 }

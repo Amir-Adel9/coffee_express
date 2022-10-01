@@ -2,7 +2,6 @@
 
 import 'package:coffee_express/app_screens/cart_widget.dart';
 import 'package:coffee_express/app_screens/favorites_screen.dart';
-import 'package:coffee_express/cart_test.dart';
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/app_screens/home_widget.dart';
 import 'package:flutter/material.dart';

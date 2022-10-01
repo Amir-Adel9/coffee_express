@@ -20,8 +20,10 @@ class _menuItemState extends State<menuItem> {
   double _width = 40;
   double _containerWidth = 135;
   var _buttonColor = secondaryColor;
+
   @override
   Widget build(BuildContext context) {
+    print(widget.item.itemRating);
     return Container(
       decoration: BoxDecoration(
         color: boxColor,

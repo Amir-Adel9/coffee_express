@@ -30,7 +30,7 @@ class Coffee {
         itemDescription:
             'A single espresso shot poured into hot foamy milk, with the surface topped with mildly sweetened cocoa powder and drizzled with scrumptious caramel syrup ',
         itemPrice: 17,
-        itemRating: 4.7,
+        itemRating: 4,
         coffeeType: 'Cappuccino'),
     Coffee(
         imagePath: 'assets/images/products/blueberry.jpg',

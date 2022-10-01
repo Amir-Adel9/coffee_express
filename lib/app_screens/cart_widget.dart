@@ -70,38 +70,35 @@ class _CartScreenState extends State<CartScreen> {
                   child: ListView.builder(
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.only(bottom: 15),
-                      child: controller.products.length == 0
-                          ? emptyCart()
-                          : Center(
-                              child: Dismissible(
-                                key: UniqueKey(),
-                                direction: DismissDirection.endToStart,
-                                background: Container(
-                                  alignment: Alignment.centerRight,
-                                  decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(right: 10),
-                                    child: Icon(
-                                      CupertinoIcons.trash,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                onDismissed: (direction) => setState(() {
-                                  controller.products.remove(
-                                      controller.products.keys.toList()[index]);
-                                }),
-                                child: CartItem(
-                                  controller: controller,
-                                  item:
-                                      controller.products.keys.toList()[index],
-                                  quantity: controller.products.values
-                                      .toList()[index],
-                                ),
+                      child: Center(
+                        child: Dismissible(
+                          key: UniqueKey(),
+                          direction: DismissDirection.endToStart,
+                          background: Container(
+                            alignment: Alignment.centerRight,
+                            decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Icon(
+                                CupertinoIcons.trash,
+                                color: Colors.white,
                               ),
                             ),
+                          ),
+                          onDismissed: (direction) => setState(() {
+                            controller.products.remove(
+                                controller.products.keys.toList()[index]);
+                          }),
+                          child: CartItem(
+                            controller: controller,
+                            item: controller.products.keys.toList()[index],
+                            quantity:
+                                controller.products.values.toList()[index],
+                          ),
+                        ),
+                      ),
                     ),
                     itemCount: controller.products.length,
                   ),
