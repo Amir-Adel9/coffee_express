@@ -7,16 +7,11 @@ class FavoriteController extends GetxController {
   void toggleFavorite(Coffee product) {
     if (_favorites.containsKey(product)) {
       _favorites.removeWhere((key, value) => key == product);
+      Get.snackbar('You have removed', '${product.itemName} to your favs');
     } else {
       _favorites[product] = 1;
-    }
-  }
-
-  void removeProduct(Coffee product) {
-    if (_favorites.containsKey(product) && _favorites[product] == 1) {
-      _favorites[product] = 1;
-    } else {
-      _favorites[product] -= 1;
+      Get.snackbar('You have added', '${product.itemName} to your favs');
+      print(_favorites.keys.first.itemPrice);
     }
   }
 }

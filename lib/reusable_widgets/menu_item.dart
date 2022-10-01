@@ -7,15 +7,15 @@ import 'package:coffee_express/global_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TestItem extends StatefulWidget {
+class menuItem extends StatefulWidget {
   Coffee item;
-  TestItem({required this.item});
+  menuItem({required this.item});
 
   @override
-  State<TestItem> createState() => _TestItemState();
+  State<menuItem> createState() => _menuItemState();
 }
 
-class _TestItemState extends State<TestItem> {
+class _menuItemState extends State<menuItem> {
   final cartController = Get.put(CartController());
   double _width = 40;
   double _containerWidth = 135;

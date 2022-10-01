@@ -81,8 +81,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               setState(() => _selectedIndex = index);
                               setState(() {
                                 coffeeType = Coffee.coffeeTypes[index];
-                                Coffee.items[index].coffeeType =
-                                    Coffee.coffeeTypes[_selectedIndex];
+                                Coffee.items[index].coffeeType = coffeeType;
                               });
                             },
                             child: Text(
@@ -107,27 +106,26 @@ class _HomeWidgetState extends State<HomeWidget> {
               child: SizedBox(
                   width: 280,
                   height: 440,
-                  child: Flexible(
-                    child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 20,
-                                mainAxisExtent: 215,
-                                mainAxisSpacing: 20),
-                        itemCount: Coffee.items.length,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) => GestureDetector(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ProductScreen(
-                                          product: Coffee.items[index],
-                                          coffeeType: coffeeType,
-                                        ))),
-                            child: TestItem(
-                              item: Coffee.items[index],
-                            ))),
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 20,
+                            mainAxisExtent: 215,
+                            mainAxisSpacing: 20),
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) => GestureDetector(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProductScreen(
+                                      item: Coffee.items[index],
+                                      coffeeType: coffeeType,
+                                    ))),
+                        child: menuItem(
+                          item: Coffee.items[index],
+                        )),
+                    itemCount: Coffee.items.length,
                   )),
             )
           ],

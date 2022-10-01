@@ -10,10 +10,10 @@ import '../coffee_data_model.dart';
 import '../favorites_controller.dart';
 
 class ProductScreen extends StatefulWidget {
-  Coffee product;
+  Coffee item;
   String coffeeType;
 
-  ProductScreen({required this.product, required this.coffeeType});
+  ProductScreen({required this.item, required this.coffeeType});
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
@@ -43,7 +43,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   child: Stack(
                     children: [
                       Image.asset(
-                        widget.product.imagePath,
+                        widget.item.imagePath,
                         width: 365,
                         height: 335,
                         fit: BoxFit.fill,
@@ -87,7 +87,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    widget.product.itemName,
+                    widget.item.itemName,
                     style: TextStyle(
                         fontSize: 16,
                         color: Colors.white,
@@ -105,7 +105,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           ),
                         ),
                         Text(
-                          ' ${widget.product.itemRating}',
+                          ' ${widget.item.itemRating}',
                           style: TextStyle(
                               fontSize: 12,
                               fontFamily: mainFont,
@@ -119,7 +119,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     child: FloatingActionButton(
                       backgroundColor: mainColor,
                       onPressed: () =>
-                          favController.toggleFavorite(widget.product),
+                          favController.toggleFavorite(widget.item),
                       child: Icon(Icons.favorite),
                     ),
                   )
@@ -127,7 +127,7 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
             ),
             Text(
-              widget.product.itemDescription,
+              widget.item.itemDescription,
               style: TextStyle(
                   fontFamily: secondaryFont, fontSize: 14, color: Colors.white),
             ),
@@ -195,7 +195,7 @@ class _ProductScreenState extends State<ProductScreen> {
                             color: Colors.white),
                       ),
                       Text(
-                        '\$${widget.product.itemPrice}',
+                        '\$${widget.item.itemPrice}',
                         style: TextStyle(
                             fontSize: 24,
                             fontFamily: secondaryFont,
@@ -205,7 +205,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        cartController.addProduct(widget.product);
+                        cartController.addProduct(widget.item);
                         Navigator.push(
                             context,
                             MaterialPageRoute(

@@ -32,7 +32,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         SizedBox(
           height: 570,
           child: ListView.builder(
-            scrollDirection: Axis.horizontal,
+            scrollDirection: Axis.vertical,
             itemBuilder: (context, index) => Center(
                 child: Dismissible(
               background: Container(
@@ -49,11 +49,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 ),
               ),
               secondaryBackground: Container(
-                alignment: Alignment.bottomCenter,
+                alignment: Alignment.centerRight,
                 decoration: BoxDecoration(
                     color: Colors.red, borderRadius: BorderRadius.circular(15)),
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 35),
+                  padding: const EdgeInsets.only(right: 12),
                   child: Icon(
                     CupertinoIcons.trash,
                     color: Colors.white,
@@ -61,7 +61,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 ),
               ),
               key: UniqueKey(),
-              direction: DismissDirection.vertical,
+              direction: DismissDirection.horizontal,
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: FavoriteItem(),

@@ -191,7 +191,7 @@ class _CartScreenState extends State<CartScreen> {
                               builder: (context) => HomeScreen()));
                       Get.snackbar(
                           'Order Received', 'thank you for your purchase',
-                          snackPosition: SnackPosition.BOTTOM,
+                          snackPosition: SnackPosition.TOP,
                           icon: Icon(Icons.coffee_sharp),
                           duration: Duration(seconds: 2));
                     },

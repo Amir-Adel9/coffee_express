@@ -13,24 +13,24 @@ class _FavoriteItemState extends State<FavoriteItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 570,
+        height: 100,
         width: 365,
         decoration: BoxDecoration(
             color: boxColor, borderRadius: BorderRadius.circular(20)),
-        child: Column(
+        child: Row(
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  top: 25, left: 20, right: 20, bottom: 30),
+                  top: 10, left: 10, right: 10, bottom: 10),
               child: Container(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(25)),
+                    BoxDecoration(borderRadius: BorderRadius.circular(12)),
                 child: Image.asset(
                   'assets/images/products/hazelnut.jpg',
                   fit: BoxFit.fill,
-                  width: 400,
-                  height: 300,
+                  width: 90,
+                  height: 70,
                 ),
               ),
             ),
@@ -38,7 +38,7 @@ class _FavoriteItemState extends State<FavoriteItem> {
                 style: TextStyle(
                     color: Colors.white,
                     fontFamily: mainFont,
-                    fontSize: 25,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold)),
             Padding(
               padding: const EdgeInsets.only(top: 10),
@@ -46,7 +46,7 @@ class _FavoriteItemState extends State<FavoriteItem> {
                   style: TextStyle(
                       color: Colors.white,
                       fontFamily: secondaryFont,
-                      fontSize: 30,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold)),
             ),
             Spacer(),
@@ -58,14 +58,14 @@ class _FavoriteItemState extends State<FavoriteItem> {
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       )),
-                      minimumSize: MaterialStateProperty.all(Size(310, 45)),
+                      minimumSize: MaterialStateProperty.all(Size(20, 20)),
                       backgroundColor:
                           MaterialStateProperty.all(secondaryColor)),
                   child: Text(
                     'BUY NOW',
                     style: TextStyle(
                         color: mainColor,
-                        fontSize: 16,
+                        fontSize: 10,
                         fontFamily: secondaryFont,
                         fontWeight: FontWeight.bold),
                   )),
