@@ -6,8 +6,13 @@ import 'package:coffee_express/reusable_widgets/favorite_item.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 
+import '../cart_controller.dart';
+import '../favorites_controller.dart';
+final controller=Get.put(FavoriteController());
+final cartController=Get.put(CartController());
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
 
@@ -16,6 +21,7 @@ class FavoritesScreen extends StatefulWidget {
 }
 
 class _FavoritesScreenState extends State<FavoritesScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,6 +41,17 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) => Center(
                 child: Dismissible(
+                  onDismissed: (direction){
+                     if(direction == DismissDirection.endToStart){
+                       setState(() {
+                         controller.favourites.remove(controller.favourites.keys.toList()[index]);
+                       });
+                     } else if(direction == DismissDirection.startToEnd){
+                       setState(() {
+                         cartController.addProduct(controller.favourites.keys.toList()[index]);
+                       });
+                     }
+                  },
               background: Container(
                 alignment: Alignment.topCenter,
                 decoration: BoxDecoration(
@@ -64,10 +81,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               direction: DismissDirection.horizontal,
               child: Padding(
                 padding: const EdgeInsets.all(10),
-                child: FavoriteItem(),
+                child: FavoriteItem(controller: cartController,item: controller.favourites.keys.toList()[index]),
               ),
             )),
-            itemCount: 3,
+            itemCount: controller.favourites.length,
           ),
         ),
       ],
