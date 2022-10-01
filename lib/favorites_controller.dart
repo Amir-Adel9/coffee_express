@@ -11,7 +11,7 @@ class FavoriteController extends GetxController {
     } else {
       _favorites[product] = 1;
       Get.snackbar('You have added', '${product.itemName} to your favs');
-      print(_favorites.keys.first.itemPrice);
     }
   }
+  get favourites => _favorites;
 }

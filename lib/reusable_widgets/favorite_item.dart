@@ -1,9 +1,20 @@
+import 'package:coffee_express/app_screens/cart_widget.dart';
+import 'package:coffee_express/cart_controller.dart';
+import 'package:coffee_express/coffee_data_model.dart';
 import 'package:coffee_express/global_colors.dart';
 import 'package:coffee_express/global_fonts.dart';
 import 'package:flutter/material.dart';
 
+import '../favorites_controller.dart';
+
 class FavoriteItem extends StatefulWidget {
-  const FavoriteItem({super.key});
+CartController controller;
+Coffee item;
+
+FavoriteItem({
+  required this.controller,
+  required this.item
+});
 
   @override
   State<FavoriteItem> createState() => _FavoriteItemState();
@@ -27,14 +38,14 @@ class _FavoriteItemState extends State<FavoriteItem> {
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(12)),
                 child: Image.asset(
-                  'assets/images/products/hazelnut.jpg',
+                  widget.item.imagePath,
                   fit: BoxFit.fill,
                   width: 90,
                   height: 70,
                 ),
               ),
             ),
-            Text('Cinnamon & Cocoa',
+            Text(widget.item.itemName,
                 style: TextStyle(
                     color: Colors.white,
                     fontFamily: mainFont,
@@ -42,7 +53,7 @@ class _FavoriteItemState extends State<FavoriteItem> {
                     fontWeight: FontWeight.bold)),
             Padding(
               padding: const EdgeInsets.only(top: 10),
-              child: Text('\$50',
+              child: Text('\$${widget.item.itemPrice}',
                   style: TextStyle(
                       color: Colors.white,
                       fontFamily: secondaryFont,
@@ -53,7 +64,10 @@ class _FavoriteItemState extends State<FavoriteItem> {
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: ElevatedButton(
-                  onPressed: null,
+                  onPressed: (){
+                    controller.addProduct(widget.item);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>CartScreen()));
+                  },
                   style: ButtonStyle(
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
