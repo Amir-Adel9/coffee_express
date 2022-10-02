@@ -22,7 +22,24 @@ class FavoritesScreen extends StatefulWidget {
   State<FavoritesScreen> createState() => _FavoritesScreenState();
 }
 
-class _FavoritesScreenState extends State<FavoritesScreen> {
+class _FavoritesScreenState extends State<FavoritesScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+
+  @override
+  void initState() {
+    animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+    animationController.repeat(reverse: true);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (controller.favourites.keys.toList().length == 0) {
@@ -127,10 +144,19 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 padding: const EdgeInsets.all(12),
                 child: Column(
                   children: [
-                    Image.asset(
-                      'assets/images/icon.png',
-                      width: 250,
-                      height: 200,
+                    AnimatedBuilder(
+                      animation: animationController.view,
+                      builder: (context, child) {
+                        return Transform.translate(
+                          offset: Offset(0, animationController.value * 20),
+                          child: child,
+                        );
+                      },
+                      child: Image.asset(
+                        'assets/images/icon.png',
+                        width: 250,
+                        height: 200,
+                      ),
                     ),
                     Text(
                       'No items currently in favorites',
