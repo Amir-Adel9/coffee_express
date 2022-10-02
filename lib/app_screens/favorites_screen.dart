@@ -108,40 +108,43 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     return Scaffold(
       backgroundColor: mainColor,
       body: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(40),
-              child: Text(
+        child: Padding(
+          padding: EdgeInsets.only(top: 60, left: 18, right: 18),
+          child: Column(
+            children: [
+              Text(
                 'Favorites',
                 style: TextStyle(
                     fontSize: 24, fontFamily: mainFont, color: Colors.white),
               ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                children: [
-                  Image.asset(
-                    'assets/images/icon.png',
-                    width: 250,
-                    height: 200,
-                  ),
-                  Text(
-                    'No items currently in favorites',
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontFamily: mainFont,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ],
+              SizedBox(
+                width: 115,
               ),
-            )
-          ],
+              SizedBox(
+                height: 50,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/icon.png',
+                      width: 250,
+                      height: 200,
+                    ),
+                    Text(
+                      'No items currently in favorites',
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontFamily: mainFont,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
