@@ -13,6 +13,8 @@ import '../getx_controllers/favorites_controller.dart';
 final controller = Get.put(FavoriteController());
 final cartController = Get.put(CartController());
 
+double offSetValue = 10;
+
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
 
@@ -101,47 +103,47 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       );
     }
   }
-}
 
-Widget emptyFavs() {
-  return Scaffold(
-    backgroundColor: mainColor,
-    body: Center(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(40),
-            child: Text(
-              'Favorites',
-              style: TextStyle(
-                  fontSize: 24, fontFamily: mainFont, color: Colors.white),
+  Widget emptyFavs() {
+    return Scaffold(
+      backgroundColor: mainColor,
+      body: Center(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(40),
+              child: Text(
+                'Favorites',
+                style: TextStyle(
+                    fontSize: 24, fontFamily: mainFont, color: Colors.white),
+              ),
             ),
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              children: [
-                Image.asset(
-                  'assets/images/icon.png',
-                  width: 250,
-                  height: 200,
-                ),
-                Text(
-                  'No items currently in favorites',
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontFamily: mainFont,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-              ],
+            SizedBox(
+              height: 50,
             ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/images/icon.png',
+                    width: 250,
+                    height: 200,
+                  ),
+                  Text(
+                    'No items currently in favorites',
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontFamily: mainFont,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }

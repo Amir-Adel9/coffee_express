@@ -7,8 +7,37 @@ import 'package:coffee_express/home.dart';
 import 'package:coffee_express/global_helpers/global_colors.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
+double offSetValue = 10;
+
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+
+  @override
+  void initState() {
+    animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+    animationController.addListener(() {
+      setState(() {
+        offSetValue = 10;
+      });
+    });
+    animationController.repeat(reverse: true);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +56,19 @@ class SplashScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Center(
-                      child: Image.asset(
-                        'assets/images/icon.png',
-                        width: 200,
-                        height: 200,
+                      child: AnimatedBuilder(
+                        animation: animationController.view,
+                        builder: (context, child) {
+                          return Transform.translate(
+                            offset: Offset(0, animationController.value * 20),
+                            child: child,
+                          );
+                        },
+                        child: Image.asset(
+                          'assets/images/icon.png',
+                          width: 250,
+                          height: 200,
+                        ),
                       ),
                     ),
                     RichText(
