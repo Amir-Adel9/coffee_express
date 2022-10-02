@@ -1,16 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:coffee_express/global_colors.dart';
-import 'package:coffee_express/global_fonts.dart';
+import 'package:coffee_express/global_helpers/global_colors.dart';
+import 'package:coffee_express/global_helpers/global_fonts.dart';
 import 'package:coffee_express/reusable_widgets/favorite_item.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-
-import '../cart_controller.dart';
-import '../favorites_controller.dart';
+import '../getx_controllers/cart_controller.dart';
+import '../getx_controllers/favorites_controller.dart';
 
 final controller = Get.put(FavoriteController());
 final cartController = Get.put(CartController());

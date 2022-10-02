@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:coffee_express/cart_controller.dart';
-import 'package:coffee_express/global_colors.dart';
-import 'package:coffee_express/global_fonts.dart';
+import 'package:coffee_express/getx_controllers/cart_controller.dart';
+import 'package:coffee_express/global_helpers/global_colors.dart';
+import 'package:coffee_express/global_helpers/global_fonts.dart';
 import 'package:flutter/material.dart';
 
 import '../coffee_data_model.dart';
@@ -10,10 +10,14 @@ import '../coffee_data_model.dart';
 class CartItem extends StatefulWidget {
   CartController controller;
   Coffee item;
+  String coffeeType;
   int quantity;
 
   CartItem(
-      {required this.controller, required this.item, required this.quantity});
+      {required this.controller,
+      required this.item,
+      required this.coffeeType,
+      required this.quantity});
 
   @override
   State<CartItem> createState() => _CartItemState();
@@ -53,7 +57,7 @@ class _CartItemState extends State<CartItem> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.item.coffeeType,
+                  Text(widget.coffeeType,
                       style: TextStyle(
                           fontSize: 14,
                           fontFamily: mainFont,

@@ -1,22 +1,24 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:coffee_express/app_screens/product_screen.dart';
-import 'package:coffee_express/global_colors.dart';
-import 'package:coffee_express/global_fonts.dart';
+import 'package:coffee_express/global_helpers/global_colors.dart';
+import 'package:coffee_express/global_helpers/global_fonts.dart';
+import 'package:coffee_express/global_helpers/global_variables.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../coffee_data_model.dart';
+import '../getx_controllers/coffee_type_controller.dart';
 import '../reusable_widgets/menu_item.dart';
 
-class HomeWidget extends StatefulWidget {
-  const HomeWidget({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomeWidget> createState() => _HomeWidgetState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> {
-  String coffeeType = 'Cappuccino';
-  int _selectedIndex = 0;
+class _HomeScreenState extends State<HomeScreen> {
+  final coffeeTypeController = Get.put(CoffeeTypeController());
 
   @override
   Widget build(BuildContext context) {
@@ -78,16 +80,16 @@ class _HomeWidgetState extends State<HomeWidget> {
                           quarterTurns: 3,
                           child: TextButton(
                             onPressed: () {
-                              setState(() => _selectedIndex = index);
                               setState(() {
+                                selectedIndex = index;
                                 coffeeType = Coffee.coffeeTypes[index];
-                                Coffee.items[index].coffeeType = coffeeType;
                               });
+                              coffeeTypeController.changeCoffeeType(coffeeType);
                             },
                             child: Text(
                               Coffee.coffeeTypes[index],
                               style: TextStyle(
-                                  color: _selectedIndex == index
+                                  color: selectedIndex == index
                                       ? secondaryColor
                                       : secondaryColor.withOpacity(0.4),
                                   fontFamily: mainFont,
@@ -107,12 +109,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                   width: 280,
                   height: 440,
                   child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 20,
-                            mainAxisExtent: 215,
-                            mainAxisSpacing: 20),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 20,
+                        mainAxisExtent: 215,
+                        mainAxisSpacing: 20),
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) => GestureDetector(
                         onTap: () => Navigator.push(

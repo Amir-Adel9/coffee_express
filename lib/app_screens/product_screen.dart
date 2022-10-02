@@ -1,16 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:coffee_express/app_screens/cart_widget.dart';
-import 'package:coffee_express/global_colors.dart';
-import 'package:coffee_express/global_fonts.dart';
-import 'package:coffee_express/global_helpers.dart';
+import 'package:coffee_express/app_screens/cart_screen.dart';
+import 'package:coffee_express/global_helpers/global_colors.dart';
+import 'package:coffee_express/global_helpers/global_fonts.dart';
+import 'package:coffee_express/global_helpers/global_variables.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../cart_controller.dart';
+import '../getx_controllers/cart_controller.dart';
 import '../coffee_data_model.dart';
-import '../favorites_controller.dart';
-import '../home_screen.dart';
+import '../getx_controllers/favorites_controller.dart';
+import '../home.dart';
 
 class ProductScreen extends StatefulWidget {
   Coffee item;
@@ -74,7 +74,7 @@ class _ProductScreenState extends State<ProductScreen> {
                             onPressed: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomeScreen())),
+                                    builder: (context) => Home())),
                             icon: Icon(
                               Icons.arrow_back,
                               color: Colors.white,

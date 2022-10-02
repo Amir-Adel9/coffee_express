@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:coffee_express/global_fonts.dart';
+import 'package:coffee_express/global_helpers/global_fonts.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:coffee_express/home_screen.dart';
-import 'package:coffee_express/global_colors.dart';
+import 'package:coffee_express/home.dart';
+import 'package:coffee_express/global_helpers/global_colors.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -59,6 +59,6 @@ class SplashScreen extends StatelessWidget {
         splashTransition: SplashTransition.fadeTransition,
         duration: 3000,
         animationDuration: Duration(seconds: 1),
-        nextScreen: HomeScreen());
+        nextScreen: Home());
   }
 }

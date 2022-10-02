@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:coffee_express/cart_controller.dart';
+import 'package:coffee_express/getx_controllers/cart_controller.dart';
 import 'package:coffee_express/coffee_data_model.dart';
-import 'package:coffee_express/global_colors.dart';
-import 'package:coffee_express/global_fonts.dart';
+import 'package:coffee_express/global_helpers/global_colors.dart';
+import 'package:coffee_express/global_helpers/global_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +23,6 @@ class _menuItemState extends State<menuItem> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.item.itemRating);
     return Container(
       decoration: BoxDecoration(
         color: boxColor,

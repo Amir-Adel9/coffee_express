@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'coffee_data_model.dart';
+import '../coffee_data_model.dart';
 
 class CartController extends GetxController {
   var _products = {}.obs;

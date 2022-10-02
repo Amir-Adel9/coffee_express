@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'coffee_data_model.dart';
+import '../coffee_data_model.dart';
 
 class FavoriteController extends GetxController {
   var _favorites = {}.obs;
